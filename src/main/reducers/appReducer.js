@@ -1,4 +1,3 @@
-'use strict';
 import { combineReducers } from 'redux'
 import { ADD_TODO, TOGGLE_TODO, SET_VISIBILITY_FILTER, VisibilityFilters } from '../actions/actionTypes'
 const { SHOW_ALL } = VisibilityFilters
@@ -15,33 +14,36 @@ function filterReducer(filter = SHOW_ALL, action) {
   return filter;
 }
 
-function todosReducer(todos, action) {
-  switch(action.type) {
-    case ADD_TODO:
-      return [
-          ...todos,
-          {
-            text: action.text,
-            isDone: false
-          }
-        ];
-    case TOGGLE_TODO:
-      return todos.map((todo, index) => {
-          if(index === action.index) {
-            return Object.assign({}, todo, {
-              isDone: !todo.completed
-            })
-          }
-          return todo
-        });
-    default:
-      return state;
+function todosReducer(todos = [], action) {
+  if (action && action.type) {
+    switch(action.type) {
+      case ADD_TODO:
+        return [
+            ...todos,
+            {
+              text: action.text,
+              isDone: false
+            }
+          ];
+      case TOGGLE_TODO:
+        return todos.map((todo, index) => {
+            if(index === action.index) {
+              return Object.assign({}, todo, {
+                isDone: !todo.completed
+              })
+            }
+            return todo
+          });
+      default:
+        return todos;
+    }
   }
+  return todos;
 }
 
-const todoApp = combineReducers({
-  visibilityFilter,
-  todos
+const appReducer = combineReducers({
+  visibilityFilter: filterReducer,
+  todos: todosReducer
 });
 
-export default todoApp
+export default appReducer;

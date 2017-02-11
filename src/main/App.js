@@ -1,7 +1,14 @@
+import { createStore } from 'redux'
+import appReducer from './reducers/appReducer'
+
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import TodoList from './view/TodoList';
+
+let store = createStore(appReducer);
+
+window.store = store;
 
 class App extends Component {
   render() {
