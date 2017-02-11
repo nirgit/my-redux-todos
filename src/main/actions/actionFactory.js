@@ -1,31 +1,32 @@
-'use strict';
+import * as actionTypes from './actionTypes'
 
-import * from 'actionFactory'
+let nextTodoId = 0
 
 export function addTodo(text) {
   return {
-    'type': ADD_TODO,
+    'type': actionTypes.ADD_TODO,
+    id: nextTodoId++,
     text
   }
 }
 
 export function removeTodo(index) {
   return {
-    'type': REMOVE_TODO,
+    'type': actionTypes.REMOVE_TODO,
     index
   }
 }
 
 export function toggleTodo(index) {
   return {
-    'type': TOGGLE_TODO,
+    'type': actionTypes.TOGGLE_TODO,
     index
   }
 }
 
 export function setVisibilityFilter(filter) {
   return {
-    type: SET_VISIBILITY_FILTER,
+    type: actionTypes.SET_VISIBILITY_FILTER,
     filter
   }
 }

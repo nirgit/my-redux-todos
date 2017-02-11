@@ -1,9 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './main/App';
-import './main/index.css';
+import {go} from './main/App';
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
+go();

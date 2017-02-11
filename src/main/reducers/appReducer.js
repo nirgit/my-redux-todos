@@ -21,6 +21,7 @@ function todosReducer(todos = [], action) {
         return [
             ...todos,
             {
+              id: action.id,
               text: action.text,
               isDone: false
             }
@@ -29,7 +30,7 @@ function todosReducer(todos = [], action) {
         return todos.map((todo, index) => {
             if(index === action.index) {
               return Object.assign({}, todo, {
-                isDone: !todo.completed
+                isDone: !todo.isDone
               })
             }
             return todo
